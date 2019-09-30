@@ -1,4 +1,4 @@
-package com.harman.infotracker;
+/*package com.harman.infotracker;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,4 +13,4 @@ public class InfoTrackerApplicationTests {
 	public void contextLoads() {
 	}
 
-}
+}*/
