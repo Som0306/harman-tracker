@@ -1,7 +1,6 @@
 package com.harman.infotracker.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -36,12 +35,12 @@ public class TrackerController {
 		return trackerRepository.findAll();
 	}
 
-	/*@GetMapping("/info/{id}")
+	@GetMapping("/info/{id}")
 	public ResponseEntity<EmployeeInfo> getInfoById(@PathVariable(value = "id") Long harmanId) {
 		EmployeeInfo employee = trackerRepository.findById(harmanId)
 				.orElseThrow(() -> new ResourceNotFoundException(harmanId));
 		return ResponseEntity.ok().body(employee);
-	}*/
+	}
 
 	@PostMapping("/info")
 	public EmployeeInfo createInfo(@Valid @RequestBody EmployeeInfo employeeInfo) {
