@@ -1,6 +1,7 @@
 package com.harman.infotracker.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -110,6 +111,12 @@ public class TrackerController {
 	public List<PoiDetail> getAllPoiInfo() {
 		return poirepository.findAll();
 	}
+	
+	@GetMapping("/info/poi/{id}")
+	public List<PoiDetail> getAllPoiInfo(@PathVariable(value = "id") Long harmanId) {
+		return poirepository.findAllByharmanId(harmanId);
+	}
+	
 	
 	@PostMapping("info/poi")
 	public PoiDetail createPoi(@Valid @RequestBody PoiDetail poiDetail) {
