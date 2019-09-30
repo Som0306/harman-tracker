@@ -1,14 +1,11 @@
 package com.harman.infotracker.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,12 +35,12 @@ public class TrackerController {
 		return trackerRepository.findAll();
 	}
 
-	@GetMapping("/info/{id}")
+	/*@GetMapping("/info/{id}")
 	public ResponseEntity<EmployeeInfo> getInfoById(@PathVariable(value = "id") Long harmanId) {
 		EmployeeInfo employee = trackerRepository.findById(harmanId)
 				.orElseThrow(() -> new ResourceNotFoundException(harmanId));
 		return ResponseEntity.ok().body(employee);
-	}
+	}*/
 
 	@PostMapping("/info")
 	public EmployeeInfo createInfo(@Valid @RequestBody EmployeeInfo employeeInfo) {
@@ -100,29 +97,25 @@ public class TrackerController {
 		return ResponseEntity.ok().body(updatedInfo);
 	}
 
-	@DeleteMapping("/info/{id}")
+	/*@DeleteMapping("/info/{id}")
 	public Map<String, Boolean> deletInfo(@PathVariable(value = "id") Long harmanId) {
-		EmployeeInfo employee = trackerRepository.findById(harmanId)
-				.orElseThrow(() -> new ResourceNotFoundException(harmanId));
-		trackerRepository.delete(employee);
+		trackerRepository.deleteById(harmanId);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return response;
 
-	}
+	}*/
 
 	@GetMapping("/info/poi")
 	public List<PoiDetail> getAllPoiInfo() {
 		return poirepository.findAll();
 	}
 	
-	/*
-	 * @GetMapping("/info/poi/{id}") public List<PoiDetail>
-	 * getPoiInfoById(@PathVariable(value = "id") Iterable<Long> harmanId) {
-	 * PoiDetail detail = poirepository.findAllById(harmanId)s .orElseThrow(() ->
-	 * new ResourceNotFoundException(harmanId)); return
-	 * ResponseEntity.ok().body(detail); }
-	 */ 
+	@PostMapping("info/poi")
+	public PoiDetail createPoi(@Valid @RequestBody PoiDetail poiDetail) {
+		return poirepository.save(poiDetail);
+	}
+	
 	
 
 
