@@ -1,5 +1,7 @@
 package com.harman.infotracker.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,7 +9,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="employee")
-public class EmployeeInfo {
+public class EmployeeInfo implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public EmployeeInfo() {}
 	

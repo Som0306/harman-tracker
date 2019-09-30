@@ -15,30 +15,13 @@ public class ResponseUtil {
 		this.reason = reason;
 	}
 
-	public Object getObject() {
-		return object;
-	}
-
-	public void setObject(Object object) {
-		this.object = object;
-	}
-
-	public HttpStatus getHttpStatus() {
-		return httpStatus;
-	}
-
-	public void setHttpStatus(HttpStatus httpStatus) {
-		this.httpStatus = httpStatus;
-	}
-
-	public String getReason() {
-		return reason;
-	}
-
-	public void setReason(String reason) {
-		this.reason = reason;
+	public ResponseUtil sucessMessage() {
+		return new ResponseUtil(object, httpStatus, reason);
 	}
 	
+	public ResponseUtil failureMessage() {
+		return new ResponseUtil(object, httpStatus, reason);
+	}
 	
 	
 }
