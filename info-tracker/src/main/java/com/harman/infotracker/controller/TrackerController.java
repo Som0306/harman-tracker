@@ -1,10 +1,14 @@
 package com.harman.infotracker.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +23,8 @@ import com.harman.infotracker.model.EmployeeInfo;
 import com.harman.infotracker.model.PoiDetail;
 import com.harman.infotracker.respository.PoiRepository;
 import com.harman.infotracker.respository.TrackerRepository;
+import com.harman.infotracker.util.EmployeeExcelGenerator;
+import com.harman.infotracker.util.PoExcelGenerator;
 
 @RestController
 @RequestMapping("/api")
@@ -122,6 +128,36 @@ public class TrackerController {
 		return poirepository.save(poiDetail);
 	}
 	
+	@GetMapping("/info/download/employee.xlsx")
+	public ResponseEntity<InputStreamResource> employeeReport() throws IOException {
+        List<EmployeeInfo> employee = (List<EmployeeInfo>) trackerRepository.findAll();
+    
+    ByteArrayInputStream in = EmployeeExcelGenerator.employeeExcel(employee);
+    
+    HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment; filename=employee.xlsx");
+    
+     return ResponseEntity
+                  .ok()
+                  .headers(headers)
+                  .body(new InputStreamResource(in));
+    }
+	
+	
+	@GetMapping("/info/poi/download/po.xlsx")
+	public ResponseEntity<InputStreamResource> excelCustomersReport() throws IOException {
+        List<PoiDetail> poDetail = (List<PoiDetail>) poirepository.findAll();
+    
+    ByteArrayInputStream in = PoExcelGenerator.poExcel(poDetail);
+    
+    HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment; filename=po.xlsx");
+    
+     return ResponseEntity
+                  .ok()
+                  .headers(headers)
+                  .body(new InputStreamResource(in));
+    }
 	
 
 
