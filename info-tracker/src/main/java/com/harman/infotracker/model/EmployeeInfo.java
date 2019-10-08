@@ -19,7 +19,7 @@ public class EmployeeInfo implements Serializable{
 	public EmployeeInfo() {}
 	
 	public EmployeeInfo(long harmanId, long diamlerId, String firstName, String middleName, String lastName,
-			String status, boolean resigned, String lwd, String gender, String dojHarman, String billStartdate,
+			String status, String resigned, String lwd, String gender, String dojHarman, String billStartdate,
 			String engagementScore, String criticality, String comments, String intorext, String skills,
 			String category, String coreornoncore, String skill, String mbrdiManager, String dept, String diamlerEmail,
 			String harmanEmail, long billing, long experience, String harmanband, String notes, String bloodGroup,
@@ -90,7 +90,7 @@ public class EmployeeInfo implements Serializable{
 	private String status;
 	
 	@Column(name = "resigned", nullable = true)
-	private boolean resigned;
+	private String resigned;
 	
 	@Column(name = "last_working_day", nullable = true)
 	private String lwd;
@@ -242,11 +242,11 @@ public class EmployeeInfo implements Serializable{
 		this.status = status;
 	}
 
-	public boolean isResigned() {
+	public String isResigned() {
 		return resigned;
 	}
 
-	public void setResigned(boolean resigned) {
+	public void setResigned(String resigned) {
 		this.resigned = resigned;
 	}
 
